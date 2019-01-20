@@ -1,16 +1,28 @@
 {
   "name": "tripplanner",
   "version": "1.0.0",
-  "description": "trip planner by serger chen hen",
+  "description": "trip planner by sergei chen hen",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon index.js",
+    "start": "node index.js" 
   },
-  "author": "sergey hen chen",
+  "author": "sergei hen chen",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.4.5",
-    "morgan": "^1.9.1"
-  }
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenyafe052/trip-planner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chenyafe052/trip-planner/issues"
+  },
+  "homepage": "https://github.com/chenyafe052/trip-planner#readme"
 }
