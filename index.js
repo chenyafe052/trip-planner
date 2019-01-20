@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-const ctrl = require('./controllers/controller')
+const ctrl = require('./controllers/tripController')
 // const asyncWrapper = require('./async.wrapper')
 
 const app = express()
