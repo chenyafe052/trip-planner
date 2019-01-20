@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
 
-
 const schema = {
-    id:         { type: String, required: true},
-    // groupName:  { type: String, required: true},
-    // status:     { type: String, required: true},
-    // cancellationReason:   { type: String, required: false},
-    // players:    [player]
+    name:   { type: String, required: true},
+    id:     { type: String, required: true},
+    email:  { type: String, required: true},
+    age:    { type: Number, required: true}
 }
 
 const user_schema = new mongoose.Schema(schema);
