@@ -1,0 +1,16 @@
+{
+  "name": "tripplanner",
+  "version": "1.0.0",
+  "description": "trip planner by serger chen hen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sergey hen chen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.5",
+    "morgan": "^1.9.1"
+  }
+}
