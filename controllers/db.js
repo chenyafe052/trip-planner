@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const consts = require('../consts')
+const consts = require('../Consts.js')
 
 const { MLAB_URL, DB_USER, DB_PASS } = consts
 const url = MLAB_URL

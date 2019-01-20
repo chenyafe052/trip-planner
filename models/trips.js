@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
-const schema = {
-    userId:              { type: String, required: true},
-    tripDateOfCreation:  { type: Date, required: true},
-    tripType:            { type: String, required: true},
-    tripId:              { type: String, required: true},
+const tripSchema = new Schema({
+    userId: { type: String, required: true },
+    tripDateOfCreation: { type: Date, required: true },
+    tripType: { type: String, required: true },
+    tripId: { type: String, required: true },
     // places:
-}
+});
 
-const trip_schema = new mongoose.Schema(schema);
-module.exports = mongoose.model('Trips', trip_schema);
+const tripsModel = mongoose.model('Trips', tripSchema);
+module.exports = tripsModel;
