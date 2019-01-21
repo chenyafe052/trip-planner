@@ -1,7 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
-const ctrl = require('./controllers/tripController')
+const ctrl = require('./controllers/familyTrip')
 const asyncWrapper = require('./controllers/async.wrapper')
+const {google} = require('googleapis')
+
 
 const app = express()
 const port = process.env.PORT || 8080;
