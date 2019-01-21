@@ -23,9 +23,12 @@ app.use(morgan('dev'))
 // app.get('/api/family/shopping',()=>{});
 // app.get('/api/family/restrount',()=>{});
 
-app.get('/api/test',sunBathCtrl.getBeaches);
-
+/*SunBath Trip Routes $$change ()=>{}$$*/
+app.get('/api/testbeach',sunBathCtrl.getBeaches);
 app.get('/api/testspa',sunBathCtrl.getSpa);
+app.get('/api/testshops',sunBathCtrl.getShops);
+app.get('/api/testbars',sunBathCtrl.getBars);
+app.get('/api/testres',sunBathCtrl.getRestaurant);
 
 /*Extreme Trip Routes $$change ()=>{}$$*/
 app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
