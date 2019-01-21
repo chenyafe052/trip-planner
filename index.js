@@ -1,8 +1,10 @@
 const express = require('express')
 const morgan = require('morgan')
-const ctrl = require('./controllers/familyTrip')
 const asyncWrapper = require('./controllers/async.wrapper')
-const sunBathctrl = require('./controllers/sunBathController')
+const extremeCtrl = require('./controllers/extremeTrip.ctrl')
+const sunBathCtrl = require('./controllers/sunBath.ctrl')
+const familyCtrl = require('./controllers/familyTrip.ctrl')
+
 
 
 const app = express()
@@ -11,10 +13,6 @@ const port = process.env.PORT || 8080;
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(morgan('dev'))
-
-// app.get('/api/get', asyncWrapper(ctrl.getAllCanceldGame))
-// app.post('/game/:id', asyncWrapper(ctrl.setGameStatus))
-// app.get('/game/:status&:cancellationReason', asyncWrapper(ctrl.getCancellationGameByReason))
 
 
 /*Family Trip Routes $$change ()=>{}$$*/
