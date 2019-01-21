@@ -1,15 +1,24 @@
 
-
+const googleModel = require('./googleController')
 
 module.exports = {
 
     //get baaces locations json from google
     getBeaches(req, res, next) {
 
-        const {locationParam = null} = req.parasm;
-        const {radiusParam = 10000} = req.params;
-        const type = "'point_of_interest','natural_feature'";
-        const name = 'shore|beach';
+        // const {locationParam = null} = req.parasm;
+        // const {radiusParam = 10000} = req.params;
+        // const type = "'point_of_interest','natural_feature'";
+        // const name = 'shore|beach';
+        const googleObject2 = {
+            location: '41.383333,2.183333',
+            radius: 10000,
+            type: "'point_of_interest','natural_feature'",
+            name: 'shore|beach'
+        };
+
+        googleModel.googleNearbyPlaces(googleObject2);
+
 
    },
 

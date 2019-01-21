@@ -1,23 +1,17 @@
 const googleMapsClient = require('@google/maps').createClient({
-    key: AIzaSyDx7HFaSFpuvT2BOeiMh4qqL - U2RaxY5fo,
+    key: 'AIzaSyDx7HFaSFpuvT2BOeiMh4qqL-U2RaxY5fo',
     Promise: Promise
 });
 
 
 module.exports = {
-    googleNearbyPlaces(locationParam, radiusParam, typeParam, nameParam) {
-        const googleObject = {
-            location: locationParam,
-            radius: radiusParam,
-            type: typeParam,
-            name: nameParam
-        };
-        googleMapsClient.placesNearby(googleObject, res)
+    googleNearbyPlaces(req,res,next) {
+        googleMapsClient.placesNearby(googleObject2, callback)
             .asPromise()
-            .then((res) => {
-                console.log(res.json.results);
+            .then((callback) => {
+                console.log(callback.json.results);
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err);
             })
     }

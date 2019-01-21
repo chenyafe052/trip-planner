@@ -2,8 +2,9 @@ const express = require('express')
 const morgan = require('morgan')
 const asyncWrapper = require('./controllers/async.wrapper')
 const extremeCtrl = require('./controllers/extremeTripCtrl')
-const sunBathCtrl = require('./controllers/sunBathCtrl')
+const sunBathCtrl = require('./controllers/sunBathController')
 const familyCtrl = require('./controllers/familyTripCtrl')
+const googleCtrl = require('./controllers/googleController')
 
 
 
