@@ -25,6 +25,8 @@ app.use(morgan('dev'))
 
 app.get('/api/test',sunBathCtrl.getBeaches);
 
+app.get('/api/testspa',sunBathCtrl.getSpa);
+
 /*Extreme Trip Routes $$change ()=>{}$$*/
 app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
 app.get('/api/extreme/adventure',extremeCtrl.getAdventure)

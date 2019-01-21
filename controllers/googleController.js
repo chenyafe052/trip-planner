@@ -1,18 +1,26 @@
-const googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyDx7HFaSFpuvT2BOeiMh4qqL-U2RaxY5fo',
-    Promise: Promise
-});
+// const googleMapsClient = require('@google/maps').createClient({
+//     key: 'AIzaSyDx7HFaSFpuvT2BOeiMh4qqL-U2RaxY5fo',
+//     Promise: Promise
+// });
 
 
-module.exports = {
-    googleNearbyPlaces(req,res,next) {
-        googleMapsClient.placesNearby(googleObject2, callback)
-            .asPromise()
-            .then((callback) => {
-                console.log(callback.json.results);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
-}
+// module.exports = {
+//     googleNearbyPlaces(locationParam, radiusParam, typeParam, nameParam) {
+//         const googleObject = {
+//             location: locationParam,
+//             radius: radiusParam,
+//             type: typeParam,
+//             name: nameParam
+//         };
+
+//         console.log(googleObject);
+//         googleMapsClient.placesNearby(googleObject, res)
+//             .asPromise()
+//             .then((res) => {
+//                 console.log(res.json.results);
+//             })
+//             .catch((err)=>{
+//                 console.log(err);
+//             })
+//     }
+// } 
