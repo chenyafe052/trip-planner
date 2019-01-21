@@ -1,14 +1,14 @@
 const express = require('express')
 const morgan = require('morgan')
 const asyncWrapper = require('./controllers/async.wrapper')
-const extremeCtrl = require('./controllers/extremeTrip.ctrl')
-const sunBathCtrl = require('./controllers/sunBath.ctrl')
-const familyCtrl = require('./controllers/familyTrip.ctrl')
+const extremeCtrl = require('./controllers/extremeTripCtrl')
+const sunBathCtrl = require('./controllers/sunBathCtrl')
+const familyCtrl = require('./controllers/familyTripCtrl')
 
 
 
 const app = express()
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -22,7 +22,12 @@ app.use(morgan('dev'))
 // app.get('/api/family/shopping',()=>{});
 // app.get('/api/family/restrount',()=>{});
 
-app.get('/api/test',sunBathctrl.getBeaches);
+app.get('/api/test',sunBathCtrl.getBeaches);
+
+/*Extreme Trip Routes $$change ()=>{}$$*/
+app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
+app.get('/api/extreme/adventure',extremeCtrl.getAdventure)
+app.get('/api/extreme/rv',extremeCtrl.getRv)
 
 /*Data Base Routes $$change ()=>{}$$*/
 // app.get('/api/db/tripById',()=>{});
