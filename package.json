@@ -11,8 +11,8 @@
   "author": "sergei hen chen",
   "license": "ISC",
   "dependencies": {
+    "@google/maps": "^0.5.5",
     "express": "^4.16.4",
-    "googleapis": "^36.0.0",
     "mongoose": "^5.4.5",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.9"
