@@ -29,10 +29,12 @@ app.get('/api/family/kidsAttraction',familyCtrl.getKidsAttraction);
 // app.get('/api/testbars',sunBathCtrl.getBars);
 // app.get('/api/testres',sunBathCtrl.getRestaurant);
 
-/*Extreme Trip Routes $$change ()=>{}$$*/
-// app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
-// app.get('/api/extreme/adventure',extremeCtrl.getAdventure)
-// app.get('/api/extreme/rv',extremeCtrl.getRv)
+/* Extreme Trip Routes */
+app.get('/api/extreme/amusementPark',asyncWrapper(extremeCtrl.getParks))
+app.get('/api/extreme/seaSport',asyncWrapper(extremeCtrl.getSeaSport))
+app.get('/api/extreme/mount',asyncWrapper(extremeCtrl.getMount))
+app.get('/api/extreme/ski',asyncWrapper(extremeCtrl.getSki))
+app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
 /*Data Base Routes $$change ()=>{}$$*/
 // app.get('/api/db/tripById',()=>{});
