@@ -8,19 +8,16 @@ const placeModel = require('../models/places');
 const tripModel = require('../models/trips')
 
 
-
 function returnCancellationHistory(tripId){
     console.log(tripId);
-    result = tripModel.find({tripId});
-    console.log(result);
+    tripModel.find({tripId})
+    .then(result => {
+        console.log('test',result);
+        return result.cancellationHistory;
+    }).catch(err => {
+        console.log(err);
+    });
 
-    console.log(JSON.stringify(result));
-    array = result.cancellationHistory;
-    if (result) {
-        console.log(array);
-        return (array);
-    }
-    else res.status(404).send('place not found');
 }
 
 module.exports = {
@@ -28,21 +25,21 @@ module.exports = {
     //get baaces locations json from google
     getBeaches(req, res, next) {
 
-        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
-            r1 = returnCancellationHistory(req.body.tripId)
+        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 ${config.GOOGLE_PLACES_API_KEY}`, async function (err, response) {
+            const r1 = await returnCancellationHistory(req.body.tripId)
             console.log(r1);
-            // let key = 0
-            // for (key in response.results) {
-            //     const place = response.results[key].place_id;
-            //     if (place >= 4) {
+            let key = 0
+            for (key in response.results) {
+                const place = response.results[key].place_id;
+                if (place >= 4) {
 
-            //     }
+                }
 
-            //     if ((response.results[key].rating >= 4) && (response.results[key].place_id != req.body.placeID))
-            //         console.log(response.results[key].place_id)
-            //     res.json(response.results[key].place_id);
-            //     break;
-            // }
+                if (response.results[key].rating >= 4)
+                    console.log(response.results[key].place_id)
+                res.json(response.results[key].place_id);
+                break;
+            }
             // const placeRes = response.results[key].place_id;
             // check if exist if DB
             // mongoose
