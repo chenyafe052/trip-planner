@@ -5,8 +5,6 @@ const asyncWrapper = require('./controllers/async.wrapper')
 //const sunBathCtrl = require('./controllers/sunBathController')
 const familyCtrl = require('./controllers/familyTripCtrl')
 
-
-
 const app = express()
 const port = process.env.PORT || 8000;
 
