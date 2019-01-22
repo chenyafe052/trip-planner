@@ -21,17 +21,17 @@ module.exports = {
     //     type: "'point_of_interest','natural_feature'",
     //     name: 'shore|beach'
     // };
-    getBeaches(req, callback, next) {
+    getBeaches(req, res, next) {
         googleMapsClient.placesNearby({
             location: '41.383333,2.183333',
             radius: 10000,
             type: "'point_of_interest','natural_feature'",
             name: 'shore|beach'
-        }, callback)
-            .asPromise()
-            .then((callback) => {
-                console.log(callback.json.results);
-            })
+        }, res)
+        .asPromise()
+        .then(function(response) {
+            res.status(200).json(response);
+        })
             .catch((err) => {
                 console.log(err);
             })
@@ -58,11 +58,12 @@ module.exports = {
             console.log(err);
         })
 
+        // console.log(result);
 
 },
 
 // get shops locations json from google
-getShops(req, callback, next) {
+getShops(req, res, next) {
 
     // const { locationParam = null } = req.parasm;
     // const { radiusParam = 10000 } = req.params;
@@ -73,10 +74,10 @@ getShops(req, callback, next) {
         location: '41.383333,2.183333',
         radius: 10000,
         name: "mall|shops|shopping center|boutique shop"
-    }, callback)
+    }, res)
         .asPromise()
-        .then((callback) => {
-            console.log(callback.json.results);
+        .then(function(response) {
+            res.status(200).json(response);
         })
         .catch((err) => {
             console.log(err);
@@ -85,7 +86,7 @@ getShops(req, callback, next) {
 
 
 // get Bars locations json from google
-getBars(req, callback, next) {
+getBars(req, res, next) {
 
     // const { locationParam = null } = req.parasm;
     // const { radiusParam = 10000 } = req.params;
@@ -96,10 +97,10 @@ getBars(req, callback, next) {
         location: '41.383333,2.183333',
         radius: 10000,
         name: "bar|cocktail bar|beach bar|club|dance club|night club|pub|dance pub|party|ball|concert"
-    }, callback)
+    }, res)
         .asPromise()
-        .then((callback) => {
-            console.log(callback.json.results);
+        .then(function(response) {
+            res.status(200).json(response);
         })
         .catch((err) => {
             console.log(err);
@@ -108,7 +109,7 @@ getBars(req, callback, next) {
 
 
 // get Restaurant locations json from google
-getRestaurant(req, callback, next) {
+getRestaurant(req, res, next) {
 
     // const { locationParam = null } = req.parasm;
     // const { radiusParam = 10000 } = req.params;
@@ -119,10 +120,10 @@ getRestaurant(req, callback, next) {
         location: '41.383333,2.183333',
         radius: 10000,
         name: "steak house|italian|french|bistro|sushi|chinese|jewish|mediterranean|grill"
-    }, callback)
+    }, res)
         .asPromise()
-        .then((callback) => {
-            console.log(callback.json.results);
+        .then(function(response) {
+            res.status(200).json(response);
         })
         .catch((err) => {
             console.log(err);
