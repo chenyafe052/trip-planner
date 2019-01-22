@@ -1,10 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
 const asyncWrapper = require('./controllers/async.wrapper')
-const extremeCtrl = require('./controllers/extremeTripCtrl')
-const sunBathCtrl = require('./controllers/sunBathController')
+//const extremeCtrl = require('./controllers/extremeTripCtrl')
+//const sunBathCtrl = require('./controllers/sunBathController')
 const familyCtrl = require('./controllers/familyTripCtrl')
-const googleCtrl = require('./controllers/googleController')
 
 
 
@@ -17,23 +16,23 @@ app.use(morgan('dev'))
 
 
 /*Family Trip Routes $$change ()=>{}$$*/
-// app.get('/api/family/kidsAttraction',()=>{});
+app.get('/api/family/kidsAttraction',familyCtrl.getKidsAttraction);
 // app.get('/api/family/museum',()=>{});
 // app.get('/api/family/amusementPark',()=>{});
 // app.get('/api/family/shopping',()=>{});
 // app.get('/api/family/restrount',()=>{});
 
 /*SunBath Trip Routes $$change ()=>{}$$*/
-app.get('/api/testbeach',sunBathCtrl.getBeaches);
-app.get('/api/testspa',sunBathCtrl.getSpa);
-app.get('/api/testshops',sunBathCtrl.getShops);
-app.get('/api/testbars',sunBathCtrl.getBars);
-app.get('/api/testres',sunBathCtrl.getRestaurant);
+// app.get('/api/testbeach',sunBathCtrl.getBeaches);
+// app.get('/api/testspa',sunBathCtrl.getSpa);
+// app.get('/api/testshops',sunBathCtrl.getShops);
+// app.get('/api/testbars',sunBathCtrl.getBars);
+// app.get('/api/testres',sunBathCtrl.getRestaurant);
 
 /*Extreme Trip Routes $$change ()=>{}$$*/
-app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
-app.get('/api/extreme/adventure',extremeCtrl.getAdventure)
-app.get('/api/extreme/rv',extremeCtrl.getRv)
+// app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
+// app.get('/api/extreme/adventure',extremeCtrl.getAdventure)
+// app.get('/api/extreme/rv',extremeCtrl.getRv)
 
 /*Data Base Routes $$change ()=>{}$$*/
 // app.get('/api/db/tripById',()=>{});
