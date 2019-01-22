@@ -19,6 +19,22 @@ module.exports = {
                     console.log(response.results[key].place_id)
                 break;
             }
+            // check if exist if DB
+            mongoose
+            .connect(url, options)
+            .then(async() => {
+                const result = await Game.find({})
+
+                if(result) res.json(result);
+                else res.status(404).send('not found');
+
+                mongoose.disconnect();
+
+            })
+            .catch(err => {
+                console.error('some error occurred' , err)
+                res.status(500).send(err.message)
+            })
             res.send(response.results[key].place_id);
             console.log(response.results.length)
             if (err) console.log('can not get getBeaches Json')
