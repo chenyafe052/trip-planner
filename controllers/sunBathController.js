@@ -1,135 +1,115 @@
 
 // const googleModel = require('./googleController')
 
-const googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyDx7HFaSFpuvT2BOeiMh4qqL-U2RaxY5fo',
-    Promise: Promise
-});
+const getJSON = require('get-json')
+const config = require('../Consts')
+const mongoose = require('mongoose');
+
 
 module.exports = {
 
     //get baaces locations json from google
-
-
-    // const {locationParam = null} = req.parasm;
-    // const {radiusParam = 10000} = req.params;
-    // const type = "'point_of_interest','natural_feature'";
-    // const name = 'shore|beach';
-    // const googleObject2 = {
-    //     location: '41.383333,2.183333',
-    //     radius: 10000,
-    //     type: "'point_of_interest','natural_feature'",
-    //     name: 'shore|beach'
-    // };
     getBeaches(req, res, next) {
-        googleMapsClient.placesNearby({
-            location: '41.383333,2.183333',
-            radius: 10000,
-            type: "'point_of_interest','natural_feature'",
-            name: 'shore|beach'
-        }, res)
-        .asPromise()
-        .then(function(response) {
-            res.status(200).json(response);
-        })
-            .catch((err) => {
-                console.log(err);
-            })
+
+        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
+
+            let key = 0
+            for (key in response.results) {
+                if (response.results[key].rating >= 4)
+                    console.log(response.results[key].place_id)
+                break;
+            }
+            res.send(response.results[key].place_id);
+            console.log(response.results.length)
+            if (err) console.log('can not get getBeaches Json')
+        });
     },
+
 
     // get spa locations json from google
     getSpa(req, res, next) {
+        
+        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &name=%22spa%22 ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
 
-    // const { locationParam = null } = req.parasm;
-    // const { radiusParam = 10000 } = req.params;
-    // const type = "";
-    // const name = 'spa|hot springs|massage|beauty therapy|beauty center';
+            let key = 0
+            for (key in response.results) {
+                if (response.results[key].rating >= 4)
+                    console.log(response.results[key].place_id)
+                break;
+            }
+            res.send(response.results[key].place_id);
+            console.log(response.results.length)
+            if (err) console.log('can not get getSpa Json')
+        });
 
-        const result =  googleMapsClient.placesNearby({
-            location: [41.383333, 2.183333],
-            radius: 10000,
-            name: "spa|hot springs|massage|beauty therapy|beauty center"
-        }) 
-            .asPromise()
-            .then(function(response) {
-                res.status(200).json(response);
+    },
+
+    // get shops locations json from google
+    getShops(req, res, next) {
+
+        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} 
+                ${req.body.location} 
+                ${config.RADIUS} 
+                ${req.body.radius} &name=%22mall|shops|shopping%20center|boutique%20shop%22
+                ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
+
+                let key = 0
+                for (key in response.results) {
+                    if (response.results[key].rating >= 4)
+                        console.log(response.results[key].place_id)
+                    break;
+                }
+                res.send(response.results[key].place_id);
+                console.log(response.results.length)
+                if (err) console.log('can not get getShops Json')
+            });
+    },
+
+
+    // get Bars locations json from google
+    getBars(req, res, next) {
+
+        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} 
+                ${req.body.location} 
+                ${config.RADIUS} 
+                ${req.body.radius} &name=%22bar|cocktail%20bar|beach%20bar|club|dance%20club|night%20club|pub|dance%20pub|party|ball|concert%22
+                ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
+
+                let key = 0
+                for (key in response.results) {
+                    if (response.results[key].rating >= 4)
+                        console.log(response.results[key].place_id)
+                    break;
+                }
+                res.send(response.results[key].place_id);
+                console.log(response.results.length);
+                if (err) console.log('can not get getBars Json');
+            });
+    },
+
+
+    // get Restaurant locations json from google
+    getRestaurant(req, res, next) {
+
+        getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} 
+                ${req.body.location} 
+                ${config.RADIUS} 
+                ${req.body.radius} &type=restaurant&name=%22steak%20house|italian|french|bistro|sushi|chinese|jewish|mediterranean|grill%22
+                ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
+
+                let key = 0
+                for (key in response.results) {
+                    if (response.results[key].rating >= 4)
+                        console.log(response.results[key].place_id)
+                    break;
+                }
+                res.send(response.results[key].place_id);
+                console.log(response.results.length)
+                if (err) console.log('can not get getRestaurant Json')
             })
-            .catch((err) => {
-            console.log(err);
-        })
-
-        // console.log(result);
-
-},
-
-// get shops locations json from google
-getShops(req, res, next) {
-
-    // const { locationParam = null } = req.parasm;
-    // const { radiusParam = 10000 } = req.params;
-    // const type = "";
-    // const name = 'mall|shops|shopping%20center|boutique%20shop';
-
-    googleMapsClient.placesNearby({
-        location: '41.383333,2.183333',
-        radius: 10000,
-        name: "mall|shops|shopping center|boutique shop"
-    }, res)
-        .asPromise()
-        .then(function(response) {
-            res.status(200).json(response);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-},
 
 
-// get Bars locations json from google
-getBars(req, res, next) {
-
-    // const { locationParam = null } = req.parasm;
-    // const { radiusParam = 10000 } = req.params;
-    // const type = "";
-    // const name = "bar|cocktail%20bar|beach%20bar|club|dance%20club|night%20club|pub|dance%20pub|party|ball|concert";
-
-    googleMapsClient.placesNearby({
-        location: '41.383333,2.183333',
-        radius: 10000,
-        name: "bar|cocktail bar|beach bar|club|dance club|night club|pub|dance pub|party|ball|concert"
-    }, res)
-        .asPromise()
-        .then(function(response) {
-            res.status(200).json(response);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-},
-
-
-// get Restaurant locations json from google
-getRestaurant(req, res, next) {
-
-    // const { locationParam = null } = req.parasm;
-    // const { radiusParam = 10000 } = req.params;
-    // const type = "";
-    // const name = 'steak%20house|italian|french|bistro|sushi|chinese|jewish|mediterranean|grill';
-
-    googleMapsClient.placesNearby({
-        location: '41.383333,2.183333',
-        radius: 10000,
-        name: "steak house|italian|french|bistro|sushi|chinese|jewish|mediterranean|grill"
-    }, res)
-        .asPromise()
-        .then(function(response) {
-            res.status(200).json(response);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-}
-
+    }
 
 }
 
