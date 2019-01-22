@@ -27,16 +27,16 @@ module.exports = {
         else res.status(404).send('not found')
     },
     //UPDATE new trip
-    // editTrip(req, res, next) {
-    //     const { tripId = null, userId = null } = req.params
-    //     const { tripType = null } = req.body
-    //     const result = Trips.find({ tripId })
-    //     result.save(
-    //         (err) => {
-    //             if (result) res.json(result)
-    //             else res.status(404).send('not found')
-    //         }
-    // },
+    editTrip(req, res, next) {
+        const { tripId = null, userId = null } = req.params
+        const { tripType = null } = req.body
+        const result = Trips.find({ tripId })
+        result.save(
+            (err) => {
+                if (result) res.json(result)
+                else res.status(404).send('not found')
+        })
+    },
     //DELETE trip by id
     deleteTrip(req, res, next) {
         const {tripId = null } = req.params
