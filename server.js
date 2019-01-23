@@ -51,7 +51,6 @@ app.get('/api/test',sunBathCtrl.getBeaches);
 // app.get('/api/extreme/ski',extremeCtrl.getSki)
 // app.get('/api/extreme/rv',extremeCtrl.getRv)
 
-<<<<<<< HEAD
 /* Extreme Trip Routes CHEN*/
 // app.get('/api/extreme/amusementPark',asyncWrapper(extremeCtrl.getParks))
 // app.get('/api/extreme/seaSport',asyncWrapper(extremeCtrl.getSeaSport))
@@ -59,20 +58,12 @@ app.get('/api/test',sunBathCtrl.getBeaches);
 // app.get('/api/extreme/ski',asyncWrapper(extremeCtrl.getSki))
 // app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
-/*DATA BASE ROUTES $$change ()=>{}$$*/
+/*DATA BASE ROUTES */
 // app.get('/api/db/trips', tripCtrlr.getAllTrips);
 // app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
 // app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
 // app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
 // app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
-=======
-/* DATA BASE ROUTES */
-app.get('/api/db/trips', tripCtrlr.getAllTrips);
-app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
-app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
-app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
-app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
->>>>>>> b867009fd23db58196432cde0edc67efc1f8294d
 
 // app.all('*', (req, res, next) => {
 //     res.send({
