@@ -1,3 +1,7 @@
+const tripModel = require('../models/trip');
+
+/* ADD ASYNC AWAIT TO ALL DB FUNCTIONS */
+
 module.exports = {
     //CREATE new trip
     setNewTrip(req, res, next) {
@@ -12,10 +16,10 @@ module.exports = {
             })
     },
     //READ all trips
-    getAllTrips(req, res, next) {
-        const result = Trips.find({})
-
-        if (result) res.json(result)
+    async getAllTrips(req, res, next) {
+        const result = await tripModel.find({})
+        console.log(result);
+        if (result) res.status(200).json(result)
         else res.status(404).send('not found')
     },
     //READ trip by tripId
