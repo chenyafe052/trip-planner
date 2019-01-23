@@ -1,16 +1,15 @@
 const getJSON = require('get-json')
 const config = require('../Consts')
-const mongoose = require('mongoose');
 const placeModel = require('../models/place');
 const tripModel = require('../models/trip')
 
 // return CancellationHistory array for specific trip
 function returnCancellationHistory(tripId){
     //console.log(tripId);
-    tripModel.findById(tripId)
+    return tripModel.findById(tripId)
     .then(result => {
         console.log('array of cancellationHistory ',result);
-        return JSON.stringify( result );
+        return (result);
     }).catch(err => {
         console.log(err);
     });
@@ -57,7 +56,7 @@ module.exports = {
         // need to complete error check
         getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 ${config.GOOGLE_PLACES_API_KEY}`, 
         async function (err, response) {
-            console.log(response);
+            //console.log(response);
             
             const r1 = await returnCancellationHistory(req.body.tripId);
             const r2 = await returnTripPlaces(req.body.tripId);

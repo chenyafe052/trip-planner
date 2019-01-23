@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const sunBathCtrl = require('./controllers/sunBathController')
 const familyTripController = require('./controllers/familyTripCtrl')
 const tripCtrlr = require('./controllers/tripCtrl')
+const userCtrl = require('./controllers/userCtrl')
 //server app uses
 const app = express()
 const port = process.env.PORT || 8000;
@@ -16,6 +17,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
 /*ROUTES*/
+
+/*User Routes HEN*/
+
+app.get('/api/addUser',userCtrl.addUser)
 
 /*Family Trip Routes SERGEI*/
 //app.get('/api/family/kidsAttraction',familyTripController.getKidsAttraction);
