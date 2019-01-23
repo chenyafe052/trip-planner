@@ -3,7 +3,6 @@ const config = require('../Consts')
 const placeModel = require('../models/place');
 const tripModel = require('../models/trip')
 
-
 // return CancellationHistory array for specific trip
 async function returnCancellationHistory(tripId, placeId) {
    return tripModel.findById(tripId)
@@ -25,8 +24,6 @@ async function returnCancellationHistory(tripId, placeId) {
     
 
 }
-
-
 // return array of places for specific trip
 async function returnTripPlaces(tripId, placeId) {
     return tripModel.findById(tripId)
@@ -44,11 +41,7 @@ async function returnTripPlaces(tripId, placeId) {
         }).catch(err => {
             console.log(err);
         });
-
-   
-
 }
-
 // check if a place is recommended by other users
 async function recommendedLocation(placeId) {
     console.log("placeId>>>>>>>", placeId);
@@ -78,55 +71,37 @@ module.exports = {
 
     //get baaces locations json from google
     getBeaches(req, res, next) {
-        // need to complete error check
         getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} 
-        ${req.body.location} 
-        ${config.RADIUS} 
-        ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 
-        ${config.GOOGLE_PLACES_API_KEY}`,
-            async function (err, response) {
-                // const CancellationHistoryArray = await returnCancellationHistory(req.body.tripId);
-                // const TripPlacesArray = await returnTripPlaces(req.body.tripId);
-                let key = 0;
-                // let counter = 0;
-                
-                // flag for if exist in cancellation History
-                let cancellationFlag=0;
-                let placeArrayFlag =0;
-                console.log(response.results.length)
+                 ${req.body.location} 
+                 ${config.RADIUS} 
+                 ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 
+                 ${config.GOOGLE_PLACES_API_KEY}`,
+                 async function (err, response) {
+                    let key = 0;
+                    let cancellationFlag= 0;
+                    let placeArrayFlag = 0;
+                    let recommend = 0;
 
-                for (key = 0; key < response.results.length && response.results[key].rating >= 4; key++) {
-                    console.log("json from google ", response.results[key].place_id);
-                    console.log("rating", response.results[key].rating);
+                    for (key = 0; key < response.results.length && response.results[key].rating >= 4; key++) {
+                        cancellationFlag = await returnCancellationHistory(req.body.tripId, response.results[key].place_id);
+                        placeArrayFlag = await returnTripPlaces(req.body.tripId, response.results[key].place_id);
 
-                    cancellationFlag = await returnCancellationHistory(req.body.tripId, response.results[key].place_id);
-                    placeArrayFlag = await returnTripPlaces(req.body.tripId, response.results[key].place_id);
-                    console.log(cancellationFlag);
-                    console.log(placeArrayFlag);
-                    //
-
-                    if (cancellationFlag===1 && placeArrayFlag===1) {
-                        const recommend = await recommendedLocation(response.results[key].place_id);
-                        console.log('recommended>>>>>>>>>>>>>>>', recommend);
-    
-                        if (recommend === 2) { // recommended
-                            placeFoundFlag = true;
-                            res.json(response.results[key].place_id)
-                        }
-                        else if (recommend === 1) { // not in system
-                            placeFoundFlag = true;
-                            console.log(response.results[key].place_id)
-                            // res.json(response.results[key].place_id);
-                        }
-                        if (recommend === 0) continue; // not recommended
-    
-                    }
-
-                }
-
-
+                        // check if place is not in CancellationHistory && returnTripPlaces
+                        if (cancellationFlag===1 && placeArrayFlag===1) {
+                            recommend = await recommendedLocation(response.results[key].place_id);
         
-             if (err) console.log('can not get getBeaches Json')
+                            if (recommend === 2) { // recommended
+                                placeFoundFlag = true;
+                                res.json(response.results[key].place_id)
+                            }
+                            else if (recommend === 1) { // not in system
+                                placeFoundFlag = true;
+                                console.log(response.results[key].place_id)
+                            }
+                            if (recommend === 0) continue; // not recommended
+                        }
+                }
+            if (err) console.log('can not get getBeaches Json')
     });
 },
 
@@ -134,7 +109,11 @@ module.exports = {
     // get spa locations json from google
     getSpa(req, res, next) {
 
-    getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &name=%22spa%22 ${config.GOOGLE_PLACES_API_KEY}`, function (err, response) {
+    getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} 
+             ${req.body.location} 
+             ${config.RADIUS} ${req.body.radius} &name=%22spa%22 
+             ${config.GOOGLE_PLACES_API_KEY}`, 
+             function (err, response) {
 
         let key = 0
         for (key in response.results) {
