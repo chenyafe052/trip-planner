@@ -27,12 +27,8 @@ app.get('/api/places', placeCtrl.getAllPlaces)
 // app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
 
 /*User Routes HEN*/
-<<<<<<< HEAD
 
 //app.get('/api/addUser',userCtrl.addUser)
-=======
-app.get('/api/addUser',userCtrl.addUser)
->>>>>>> b867009fd23db58196432cde0edc67efc1f8294d
 
 /*Family Trip Routes */
 //app.get('/api/family/kidsAttraction',familyTripCntrl.getKidsAttraction);
@@ -41,13 +37,8 @@ app.get('/api/addUser',userCtrl.addUser)
 // app.get('/api/family/shopping',()=>{});
 // app.get('/api/family/restrount',()=>{});
 
-<<<<<<< HEAD
 /*SunBath Trip Routes HEN*/
 app.get('/api/test',sunBathCtrl.getBeaches);
-=======
-/* SunBath Trip Routes */
-app.get('/api/testbeach',sunBathCtrl.getBeaches);
->>>>>>> b867009fd23db58196432cde0edc67efc1f8294d
 // app.get('/api/testspa',sunBathCtrl.getSpa);
 // app.get('/api/testshops',sunBathCtrl.getShops);
 // app.get('/api/testbars',sunBathCtrl.getBars);
