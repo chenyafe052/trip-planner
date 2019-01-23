@@ -24,13 +24,13 @@ app.use(morgan('dev'))
 
 /*  Place Routes */
 app.get('/api/places', placeCtrl.getAllPlaces)
-app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
-app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
-app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
+// app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
+// app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
+// app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
 
 /*User Routes HEN*/
 
-app.get('/api/addUser',userCtrl.addUser)
+//app.get('/api/addUser',userCtrl.addUser)
 
 /*Family Trip Routes SERGEI*/
 //app.get('/api/family/kidsAttraction',familyTripController.getKidsAttraction);
@@ -40,7 +40,7 @@ app.get('/api/addUser',userCtrl.addUser)
 // app.get('/api/family/restrount',()=>{});
 
 /*SunBath Trip Routes HEN*/
-app.get('/api/testbeach',sunBathCtrl.getBeaches);
+app.get('/api/test',sunBathCtrl.getBeaches);
 // app.get('/api/testspa',sunBathCtrl.getSpa);
 // app.get('/api/testshops',sunBathCtrl.getShops);
 // app.get('/api/testbars',sunBathCtrl.getBars);
@@ -55,19 +55,19 @@ app.get('/api/testbeach',sunBathCtrl.getBeaches);
 // app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
 /*DATA BASE ROUTES $$change ()=>{}$$*/
-app.get('/api/db/trips', tripCtrlr.getAllTrips);
-app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
-app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
-app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
-app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
+// app.get('/api/db/trips', tripCtrlr.getAllTrips);
+// app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
+// app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
+// app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
+// app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
 
-app.all('*', (req, res, next) => {
-    res.send({
-        'appName': "trip-planner",
-        'status': "running",
-        'stage': "dev",
-        'docUrl': "https://github.com/chenyafe052/trip-planner"
-    })
-})
+// app.all('*', (req, res, next) => {
+//     res.send({
+//         'appName': "trip-planner",
+//         'status': "running",
+//         'stage': "dev",
+//         'docUrl': "https://github.com/chenyafe052/trip-planner"
+//     })
+// })
 
 app.listen(port, () => console.log(`Express server listening on port ${port}`))
