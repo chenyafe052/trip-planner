@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const tripSchema = new Schema({
-    userId: { type: Number, index: 1, required: true },
+    userId: { type: Number, required: true },
+    tripId: { type: Number,  index: 1, required: true },
     tripDateOfCreation: { type: String, required: true },
     tripType: { type: String, required: true },
     places: [String],

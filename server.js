@@ -3,10 +3,10 @@ const express = require('express')
 const morgan = require('morgan')
 
 //trip-planner modules import
-//const extremeController = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
-const sunBathController = require('./controllers/sunBathController')
+//const extremeCtrl = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
+const sunBathCtrl = require('./controllers/sunBathController')
 const familyTripController = require('./controllers/familyTripCtrl')
-
+const placeCtrl = require('./controllers/placeCtrl')
 //server app uses
 const app = express()
 const port = process.env.PORT || 8000;
@@ -17,6 +17,13 @@ app.use(morgan('dev'))
 
 /*ROUTES*/
 
+/*  Place Routes */
+app.get('/api/places', placeCtrl.getAllPlaces)
+app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
+app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
+app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
+
+
 /*Family Trip Routes SERGEI*/
 //app.get('/api/family/kidsAttraction',familyTripController.getKidsAttraction);
 // app.get('/api/family/museum',()=>{});
@@ -25,7 +32,7 @@ app.use(morgan('dev'))
 // app.get('/api/family/restrount',()=>{});
 
 /*SunBath Trip Routes HEN*/
-//app.get('/api/testbeach',sunBathCtrl.getBeaches);
+app.get('/api/testbeach',sunBathCtrl.getBeaches);
 // app.get('/api/testspa',sunBathCtrl.getSpa);
 // app.get('/api/testshops',sunBathCtrl.getShops);
 // app.get('/api/testbars',sunBathCtrl.getBars);
