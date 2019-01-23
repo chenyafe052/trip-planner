@@ -1,2 +1,2 @@
-require('./controllers/db.js')
-require('./server.js')
+require('./controllers/db')
+require('./server')

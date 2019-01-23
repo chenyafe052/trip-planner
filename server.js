@@ -4,18 +4,23 @@ const morgan = require('morgan')
 
 //trip-planner modules import
 //const extremeController = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
-const sunBathController = require('./controllers/sunBathController')
+const sunBathCtrl = require('./controllers/sunBathController')
 const familyTripController = require('./controllers/familyTripCtrl')
 const tripCtrlr = require('./controllers/tripCtrl')
+const userCtrl = require('./controllers/userCtrl')
 //server app uses
 const app = express()
 const port = process.env.PORT || 8000;
 
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
 /*ROUTES*/
+
+/*User Routes HEN*/
+
+app.get('/api/addUser',userCtrl.addUser)
 
 /*Family Trip Routes SERGEI*/
 //app.get('/api/family/kidsAttraction',familyTripController.getKidsAttraction);
@@ -25,11 +30,11 @@ app.use(morgan('dev'))
 // app.get('/api/family/restrount',()=>{});
 
 /*SunBath Trip Routes HEN*/
-//app.get('/api/testbeach',sunBathCtrl.getBeaches);
-// app.get('/api/testspa',sunBathCtrl.getSpa);
-// app.get('/api/testshops',sunBathCtrl.getShops);
-// app.get('/api/testbars',sunBathCtrl.getBars);
-// app.get('/api/testres',sunBathCtrl.getRestaurant);
+app.get('/api/testbeach', sunBathCtrl.getBeaches);
+app.get('/api/testspa', sunBathCtrl.getSpa);
+app.get('/api/testshops', sunBathCtrl.getShops);
+app.get('/api/testbars', sunBathCtrl.getBars);
+app.get('/api/testres', sunBathCtrl.getRestaurant);
 
 /* Extreme Trip Routes CHEN*/
 // app.get('/api/extreme/amusementPark',asyncWrapper(extremeCtrl.getParks))
@@ -46,10 +51,10 @@ app.use(morgan('dev'))
 
 app.all('*', (req, res, next) => {
     res.send({
-        'appName':"trip-planner",
-        'status':"running",
-        'stage':"dev",
-        'docUrl':"https://github.com/chenyafe052/trip-planner"
+        'appName': "trip-planner",
+        'status': "running",
+        'stage': "dev",
+        'docUrl': "https://github.com/chenyafe052/trip-planner"
     })
 })
 
