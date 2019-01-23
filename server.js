@@ -38,11 +38,11 @@ app.use(morgan('dev'))
 // app.get('/api/extreme/ski',asyncWrapper(extremeCtrl.getSki))
 // app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
-/*Data Base Routes $$change ()=>{}$$*/
-app.get('/api/db/trips',/*asyncWrapper(*/tripCtrlr.getAllTrips);
-// app.put('/api/db/editTrip',()=>{});
-// app.post('/api/db/newTrip',()=>{});
-// app.delete('/api/db/deleteTrip',()=>{});
+/*DATA BASE ROUTES $$change ()=>{}$$*/
+// app.get('/api/db/trips',);
+// app.put('/api/db/editTrip',);
+// app.post('/api/db/newTrip',);
+// app.delete('/api/db/deleteTrip',);
 
 app.all('*', (req, res, next) => {
     res.send({
