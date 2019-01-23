@@ -44,10 +44,11 @@ app.get('/api/testres', sunBathCtrl.getRestaurant);
 // app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
 /*DATA BASE ROUTES $$change ()=>{}$$*/
-// app.get('/api/db/trips',);
-// app.put('/api/db/editTrip',);
-// app.post('/api/db/newTrip',);
-// app.delete('/api/db/deleteTrip',);
+app.get('/api/db/trips', tripCtrlr.getAllTrips);
+app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
+app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
+app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
+app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
 
 app.all('*', (req, res, next) => {
     res.send({
