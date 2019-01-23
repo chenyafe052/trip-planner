@@ -1,15 +1,14 @@
 const getJSON = require('get-json')
 const config = require('../Consts')
+const mongoose = require('mongoose');
 const placeModel = require('../models/place');
 const tripModel = require('../models/trip')
 
-// return CancellationHistory array for specific trip
 function returnCancellationHistory(tripId){
     //console.log(tripId);
     return tripModel.findById(tripId)
     .then(result => {
-        console.log('array of cancellationHistory ',result);
-        return (result);
+        return (result.cancellationHistory);
     }).catch(err => {
         console.log(err);
     });
@@ -20,33 +19,13 @@ function returnCancellationHistory(tripId){
 function returnTripPlaces(tripId){
     //console.log(tripId);
     //const _id = tripId;
-    tripModel.find({tripId})
+    return tripModel.findById(tripId)
     .then(result => {
-        console.log('array of places:',result.places);
-        return result.places;
+        return (result.places);
     }).catch(err => {
         console.log(err);
     });
 
-}
-
-// check if a place is recommended by other users
-function recommendedLocation(placeId){
-    //console.log(placeId);
-    placeModel.findOne({placeId})
-    .then(result => {
-        if(result){
-            if (result.amountOfSelections >= 5){
-            console.log('recommendedLocation :',result.place_id);
-            return "recommended"; // recommended by other users
-            }
-            else return "notRecommended"; // not recommended
-        }
-        else return "newInSystem"; // not in places "collection
-        
-    }).catch(err => {
-        console.log(err);
-    });
 }
 
 module.exports = {
@@ -58,54 +37,86 @@ module.exports = {
         async function (err, response) {
             //console.log(response);
             
-            const r1 = await returnCancellationHistory(req.body.tripId);
-            const r2 = await returnTripPlaces(req.body.tripId);
-            console.log("trying to print result",r1);
+            const CancellationHistoryArray = await returnCancellationHistory(req.body.tripId);
+            const TripPlacesArray = await returnTripPlaces(req.body.tripId);
+            console.log("trying to print result [0]",CancellationHistoryArray[0]);
             let key = 0;
             let key2 =0;
             // flag for if exist in cancellation History
             let cancellationFlag = false;
             let placeArrayFlag = false;
             let placeFoundFlag = false;
-            for (key in response.results) {
-                const place = response.results[key].place_id;
-                if (place >= 4) { // check for rate 
-                    for(key2 in r1){
-                        console.log(r1[2][key2])
-                        if(place === r1[2][key2]) {
+            // console.log(response.results);
+            console.log("CancellationHistoryArray" , CancellationHistoryArray);
+            console.log("TripPlacesArray" , TripPlacesArray);
+
+            for (key=0 ; key < response.results.length ; key++) {
+                //console.log("json from google " ,response.results[key].name);
+                //const place = response.results[key].place_id;
+                console.log("rating" ,response.results[key].rating);
+
+                
+                if (response.results[key].rating >= 4) { // check for rate 
+                    for(key2=0; key2 < CancellationHistoryArray.length; key2++){
+                        console.log("CancellationHistoryArray[key2]",CancellationHistoryArray[key2])
+                        console.log("from google" , response.results[key].place_id);
+                        
+                        if(response.results[key].place_id === CancellationHistoryArray[key2]) {
                             cancellationFlag = true; // exist in cancellation History
+                            console.log("cancellationFlag",cancellationFlag);
+                            
                             break;
                         }                
                     }
-                    for (key2 in r2){
-                        if(place === r2[key2]){
+                    for (key2=0; key2 < TripPlacesArray.length; key2++){
+                        if(response.results[key].place_id === TripPlacesArray[key2]){
                             placeArrayFlag = true ; //exist in places array
                             break;
                         }
                     }
                     if(cancellationFlag || placeArrayFlag) continue;
 
-                    const recommend = recommendedLocation(place);
+                    const recommend = recommendedLocation(response.results[key].place_id);
                     if (recommend === "recommended"){
                         placeFoundFlag = true;
-                        res.json(place)
+                        res.json(response.results[key].place_id)
                     }
                     if(recommend === "notRecommended") continue;
                     if(recommend === "newInSystem") {
                         placeFoundFlag = true;
-                        res.json(place);
+                        res.json(response.results[key].place_id);
                     }
                 }
+
+                if (response.results[key].rating >= 4)
+                    console.log(response.results[key].place_id)
+                res.json(response.results[key].place_id);
+                break;
             }
-            if(!placeFoundFlag)
-            {
-                console.log("no place was found")
-                res.send({
-                    "found" : 0
-                })
-            }
+            // const placeRes = response.results[key].place_id;
+            // check if exist if DB
+            // mongoose
+            // .connect(url, options)
+            // .then(async() => {
+            //     const {placeGoogleId = null} = placeRes;
+            //     const result = await placeModel.find({placeGoogleId})
+
+            //     if(result) {
+            //         res.send(`place : ${placeRes} was found`);
+
+            //     }
+            //     else res.status(404).send('place not found');
+
+            //     mongoose.disconnect();
+
+            // })
+            // .catch(err => {
+            //     console.error('some error occurred' , err)
+            //     res.status(500).send(err.message)
+            // })
+            // res.send(placeRes);
             console.log(response.results.length)
-            // if (err) console.log('can not get getBeaches Json')
+             if (err) console.log('can not get getBeaches Json')
         });
     },
 
