@@ -20,44 +20,30 @@ module.exports = {
 
     //get baaces locations json from google
     getBeaches(req, res, next) {
-
+        // need to complete error check
         getJSON(`${config.GOOGLE_PLACES_URL_FORMAT} ${req.body.location} ${config.RADIUS} ${req.body.radius} &type=%22point_of_interest%22,%22natural_feature%22&name=%22shore|beach%22 ${config.GOOGLE_PLACES_API_KEY}`, async function (err, response) {
             const r1 = await returnCancellationHistory(req.body.tripId)
             console.log(r1);
-            let key = 0
+            let key = 0;
+            let key2 =0;
+            let flag = 1;
             for (key in response.results) {
                 const place = response.results[key].place_id;
                 if (place >= 4) {
-
+                    for(key2 in r1){
+                        if(place === r1[key2]) {
+                            flag = 0;
+                            break;
+                        }                
+                    }
+                    if(flag === 0) continue;    
                 }
 
-                if (response.results[key].rating >= 4)
-                    console.log(response.results[key].place_id)
-                res.json(response.results[key].place_id);
+                
+                console.log(place)
+                res.json(place);
                 break;
             }
-            // const placeRes = response.results[key].place_id;
-            // check if exist if DB
-            // mongoose
-            // .connect(url, options)
-            // .then(async() => {
-            //     const {placeGoogleId = null} = placeRes;
-            //     const result = await placeModel.find({placeGoogleId})
-
-            //     if(result) {
-            //         res.send(`place : ${placeRes} was found`);
-
-            //     }
-            //     else res.status(404).send('place not found');
-
-            //     mongoose.disconnect();
-
-            // })
-            // .catch(err => {
-            //     console.error('some error occurred' , err)
-            //     res.status(500).send(err.message)
-            // })
-            // res.send(placeRes);
             console.log(response.results.length)
             // if (err) console.log('can not get getBeaches Json')
         });
