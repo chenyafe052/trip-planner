@@ -20,8 +20,9 @@ module.exports = {
         const { placeGoogleId = null }= req.params
         const { placeType = null } = req.body
         amountOfSelections = 1
-        const place = new placeModel({placeType, placeGoogleId, amountOfSelections})
+        const place = new placeModel( {placeType, placeGoogleId, amountOfSelections} )
         const result = await place.save()
+        
         if (result) res.json(result)
         else res.status(404).send('not found')
     },
@@ -30,7 +31,8 @@ module.exports = {
         const { placeGoogleId = null } = req.params
         const place = await placeModel.findOne({ placeGoogleId })
         place.amountOfSelections++;
-        const result = await placeModel.updateOne({placeGoogleId}, {amountOfSelections:place.amountOfSelections})
+        const result = await placeModel.updateOne( {placeGoogleId}, {amountOfSelections:place.amountOfSelections} )
+        
         if (result) res.json(result)
         else res.status(404).send('not found')
     }

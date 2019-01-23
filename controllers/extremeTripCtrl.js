@@ -1,9 +1,4 @@
-
-// Create client with a Promise constructor
-const googleMapsClient = require('@google/maps').createClient({
-    key: 'AIzaSyDx7HFaSFpuvT2BOeiMh4qqL-U2RaxY5fo',
-    Promise: Promise // 'Promise' is the native constructor.
-})
+const config     = require('../Consts.js')
 
 module.exports = {
     getParks(req, callback, next) {

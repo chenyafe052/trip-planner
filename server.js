@@ -5,13 +5,11 @@ const morgan = require('morgan')
 //trip-planner modules import
 //const extremeCtrl = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
 const sunBathCtrl = require('./controllers/sunBathController')
-const familyTripController = require('./controllers/familyTripCtrl')
+const familyTripCtrl = require('./controllers/familyTripCtrl')
 const placeCtrl = require('./controllers/placeCtrl')
-//const extremeController = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
-
-
 const tripCtrlr = require('./controllers/tripCtrl')
 const userCtrl = require('./controllers/userCtrl')
+
 //server app uses
 const app = express()
 const port = process.env.PORT || 8000;
@@ -29,24 +27,40 @@ app.get('/api/places', placeCtrl.getAllPlaces)
 // app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
 
 /*User Routes HEN*/
+<<<<<<< HEAD
 
 //app.get('/api/addUser',userCtrl.addUser)
+=======
+app.get('/api/addUser',userCtrl.addUser)
+>>>>>>> b867009fd23db58196432cde0edc67efc1f8294d
 
-/*Family Trip Routes SERGEI*/
-//app.get('/api/family/kidsAttraction',familyTripController.getKidsAttraction);
+/*Family Trip Routes */
+//app.get('/api/family/kidsAttraction',familyTripCntrl.getKidsAttraction);
 // app.get('/api/family/museum',()=>{});
 // app.get('/api/family/amusementPark',()=>{});
 // app.get('/api/family/shopping',()=>{});
 // app.get('/api/family/restrount',()=>{});
 
+<<<<<<< HEAD
 /*SunBath Trip Routes HEN*/
 app.get('/api/test',sunBathCtrl.getBeaches);
+=======
+/* SunBath Trip Routes */
+app.get('/api/testbeach',sunBathCtrl.getBeaches);
+>>>>>>> b867009fd23db58196432cde0edc67efc1f8294d
 // app.get('/api/testspa',sunBathCtrl.getSpa);
 // app.get('/api/testshops',sunBathCtrl.getShops);
 // app.get('/api/testbars',sunBathCtrl.getBars);
 // app.get('/api/testres',sunBathCtrl.getRestaurant);
 
+/* Extreme Trip Routes */
+// app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
+// app.get('/api/extreme/seaSport',extremeCtrl.getSeaSport)
+// app.get('/api/extreme/mount',extremeCtrl.getMount)
+// app.get('/api/extreme/ski',extremeCtrl.getSki)
+// app.get('/api/extreme/rv',extremeCtrl.getRv)
 
+<<<<<<< HEAD
 /* Extreme Trip Routes CHEN*/
 // app.get('/api/extreme/amusementPark',asyncWrapper(extremeCtrl.getParks))
 // app.get('/api/extreme/seaSport',asyncWrapper(extremeCtrl.getSeaSport))
@@ -60,6 +74,14 @@ app.get('/api/test',sunBathCtrl.getBeaches);
 // app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
 // app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
 // app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
+=======
+/* DATA BASE ROUTES */
+app.get('/api/db/trips', tripCtrlr.getAllTrips);
+app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
+app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
+app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
+app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
+>>>>>>> b867009fd23db58196432cde0edc67efc1f8294d
 
 // app.all('*', (req, res, next) => {
 //     res.send({

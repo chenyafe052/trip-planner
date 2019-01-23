@@ -13,7 +13,7 @@ const options = {
 const connect = mongoose.createConnection(url, options)
 
 connect.on('connected', () => console.log('mongoose connected'))
-connect.on('error', (err) => console.error(err))
+connect.on('error', (err)  => console.error(err))
 
 mongoose.connect(url, options)
 
