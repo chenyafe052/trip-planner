@@ -26,17 +26,18 @@ module.exports = {
             console.log(r1);
             let key = 0;
             let key2 =0;
-            let flag = 1;
+            // flag for if exist in cancellation History
+            let flag = false;
             for (key in response.results) {
                 const place = response.results[key].place_id;
                 if (place >= 4) {
                     for(key2 in r1){
                         if(place === r1[key2]) {
-                            flag = 0;
+                            flag = true; // exist in cancellation History
                             break;
                         }                
                     }
-                    if(flag === 0) continue;    
+                    if(flag) continue;    
                 }
 
                 
