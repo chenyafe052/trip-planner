@@ -3,7 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 
 //trip-planner modules import
-//const extremeCtrl = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
+const extremeCtrl = require('./controllers/extremeTripCtrl')
 const sunBathCtrl = require('./controllers/sunBathController')
 const familyTripCtrl = require('./controllers/familyTripCtrl')
 const placeCtrl = require('./controllers/placeCtrl')
@@ -22,13 +22,13 @@ app.use(morgan('dev'))
 
 /*  Place Routes */
 app.get('/api/places', placeCtrl.getAllPlaces)
-// app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
-// app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
-// app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
+app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
+app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
+app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
 
-/*User Routes HEN*/
-
-//app.get('/api/addUser',userCtrl.addUser)
+/*User Routes */
+app.put('/api/addUser',userCtrl.addUser)
+app.get('/api/getuser/:email',userCtrl.getUserByEmail)
 
 /*Family Trip Routes */
 //app.get('/api/family/kidsAttraction',familyTripCntrl.getKidsAttraction);
@@ -37,12 +37,12 @@ app.get('/api/places', placeCtrl.getAllPlaces)
 // app.get('/api/family/shopping',()=>{});
 // app.get('/api/family/restrount',()=>{});
 
-/*SunBath Trip Routes HEN*/
+/*SunBath Trip Routes */
 app.get('/api/test',sunBathCtrl.getBeaches);
-// app.get('/api/testspa',sunBathCtrl.getSpa);
-// app.get('/api/testshops',sunBathCtrl.getShops);
-// app.get('/api/testbars',sunBathCtrl.getBars);
-// app.get('/api/testres',sunBathCtrl.getRestaurant);
+app.get('/api/testspa',sunBathCtrl.getSpa);
+app.get('/api/testshops',sunBathCtrl.getShops);
+app.get('/api/testbars',sunBathCtrl.getBars);
+app.get('/api/testres',sunBathCtrl.getRestaurant);
 
 /* Extreme Trip Routes */
 // app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
@@ -50,13 +50,6 @@ app.get('/api/test',sunBathCtrl.getBeaches);
 // app.get('/api/extreme/mount',extremeCtrl.getMount)
 // app.get('/api/extreme/ski',extremeCtrl.getSki)
 // app.get('/api/extreme/rv',extremeCtrl.getRv)
-
-/* Extreme Trip Routes CHEN*/
-// app.get('/api/extreme/amusementPark',asyncWrapper(extremeCtrl.getParks))
-// app.get('/api/extreme/seaSport',asyncWrapper(extremeCtrl.getSeaSport))
-// app.get('/api/extreme/mount',asyncWrapper(extremeCtrl.getMount))
-// app.get('/api/extreme/ski',asyncWrapper(extremeCtrl.getSki))
-// app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
 /*DATA BASE ROUTES */
 // app.get('/api/db/trips', tripCtrlr.getAllTrips);
