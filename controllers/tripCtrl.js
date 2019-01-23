@@ -20,7 +20,8 @@ module.exports = {
         const result = await trip.save();
         if(result){
             res.status(200).send({"added":1})
-        }else{
+        }
+        else{
             res.status(404).send({"error":"wrong params input"})
         }
     },
@@ -30,10 +31,11 @@ module.exports = {
         const { _id = null } = req.params;
         const places = req.body;
 
-        result = await tripModel.updateOne({ _id }, { places })
+        const result = await tripModel.updateOne({ _id }, { places })
         if(result){
             res.status(200).send({"edited":_id})
-        }else{
+        }
+        else{
             res.status(404).send({"error":"wrong params or not found"})
         }
     },
@@ -42,7 +44,7 @@ module.exports = {
     async findTripByID(req, res, next) {
         const { id = null } = req.params
 
-        result = await findById(id);
+        const result = await findById(id);
         if(result){
             res.status(200).send(result)
         }else{
@@ -53,7 +55,7 @@ module.exports = {
     //DELETE
     async deleteTrip(req, res, next) {
         const { _id = null } = req.params
-        result = await tripModel.deleteOne(_id);
+        const result = await tripModel.deleteOne(_id);
         if(result){
             res.status(200).send({"deleted":1})
         }else{
