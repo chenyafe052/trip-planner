@@ -6,7 +6,7 @@ const morgan = require('morgan')
 //const extremeController = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
 const sunBathController = require('./controllers/sunBathController')
 const familyTripController = require('./controllers/familyTripCtrl')
-
+const tripCtrlr = require('./controllers/tripCtrl')
 //server app uses
 const app = express()
 const port = process.env.PORT || 8000;
@@ -39,7 +39,7 @@ app.use(morgan('dev'))
 // app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
 
 /*Data Base Routes $$change ()=>{}$$*/
-// app.get('/api/db/tripById',()=>{});
+app.get('/api/db/trips',/*asyncWrapper(*/tripCtrlr.getAllTrips);
 // app.put('/api/db/editTrip',()=>{});
 // app.post('/api/db/newTrip',()=>{});
 // app.delete('/api/db/deleteTrip',()=>{});
