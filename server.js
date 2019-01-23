@@ -8,8 +8,8 @@ const sunBathCtrl = require('./controllers/sunBathController')
 const familyTripController = require('./controllers/familyTripCtrl')
 const placeCtrl = require('./controllers/placeCtrl')
 //const extremeController = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
-const sunBathCtrl = require('./controllers/sunBathController')
-const familyTripController = require('./controllers/familyTripCtrl')
+
+
 const tripCtrlr = require('./controllers/tripCtrl')
 const userCtrl = require('./controllers/userCtrl')
 //server app uses
