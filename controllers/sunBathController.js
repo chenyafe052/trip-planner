@@ -1,12 +1,8 @@
-
-// const googleModel = require('./googleController')
-
 const getJSON = require('get-json')
 const config = require('../Consts')
 const mongoose = require('mongoose');
-const placeModel = require('../models/places');
-const tripModel = require('../models/trips')
-
+const placeModel = require('../models/place');
+const tripModel = require('../models/trip')
 
 function returnCancellationHistory(tripId){
     console.log(tripId);
