@@ -4,7 +4,7 @@ const morgan = require('morgan')
 
 //trip-planner modules import
 //const extremeCtrl = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
-const sunBathCtrl = require('./controllers/sunBathController')
+const sunBathCtrl = require('./controllers/sunBathTripCtrl')
 const familyTripCtrl = require('./controllers/familyTripCtrl')
 const placeCtrl = require('./controllers/placeCtrl')
 const tripCtrlr = require('./controllers/tripCtrl')
@@ -38,11 +38,11 @@ app.get('/api/places', placeCtrl.getAllPlaces)
 // app.get('/api/family/restrount',()=>{});
 
 /*SunBath Trip Routes HEN*/
-app.get('/api/test',sunBathCtrl.getBeaches);
-// app.get('/api/testspa',sunBathCtrl.getSpa);
-// app.get('/api/testshops',sunBathCtrl.getShops);
-// app.get('/api/testbars',sunBathCtrl.getBars);
-// app.get('/api/testres',sunBathCtrl.getRestaurant);
+app.get('/api/sun/beach',sunBathCtrl.getBeaches);
+app.get('/api/sun/spa',sunBathCtrl.getSpa);
+app.get('/api/sun/shop',sunBathCtrl.getShops);
+app.get('/api/sun/bar',sunBathCtrl.getBars);
+app.get('/api/sun/res',sunBathCtrl.getRestaurant);
 
 /* Extreme Trip Routes */
 // app.get('/api/extreme/amusementPark',extremeCtrl.getParks)

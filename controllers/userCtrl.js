@@ -7,7 +7,8 @@ module.exports = {
         const { email = null, name = null } = req.body;
         const user = new userModel({ email, name });
 
-        user.save().then((result) => {
+        user.save()
+            .then((result) => {
             console.log(result);
             res.status(200).send(`${name} registered successfully`);
         },
