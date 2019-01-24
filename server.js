@@ -42,12 +42,21 @@ app.get('/api/getuser/:email',userCtrl.getUserByEmail)
 // app.get('/api/family/shopping',familyTripCtrl.getParks);
 // app.get('/api/family/restrount',familyTripCtrl.getRestaurant);
 
+<<<<<<< HEAD
 /*SunBath Trip Routes HEN*/
 app.get('/api/sun/beach',sunBathCtrl.getBeaches);
 app.get('/api/sun/spa',sunBathCtrl.getSpa);
 app.get('/api/sun/shop',sunBathCtrl.getShops);
 app.get('/api/sun/bar',sunBathCtrl.getBars);
 app.get('/api/sun/res',sunBathCtrl.getRestaurant);
+=======
+/*SunBath Trip Routes */
+app.get('/api/sun/beach',sunBathCtrl.getBeaches);
+app.get('/api/sun/spa',sunBathCtrl.getSpa);
+// app.get('/api/sun/shop',sunBathCtrl.getShops);
+// app.get('/api/sun/bar',sunBathCtrl.getBars);
+// app.get('/api/sun/res',sunBathCtrl.getRestaurant);
+>>>>>>> b0dbc6a55313c7888bfbbd955550afc9a9b71afe
 
 /* Extreme Trip Routes */
 // app.get('/api/extreme/amusementPark',extremeCtrl.getParks)
