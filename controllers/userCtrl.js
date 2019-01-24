@@ -18,14 +18,11 @@ module.exports = {
             });
     },
 
-    getUserByEmail: async (req, res) => {
-        const { email = null } = req.body;
-        userModel.findOne({ email })
-            .then((result) => {
-                if (result) {
-                    res.status(200).json(result);
-                }
-                else res.status(404).send(`${email} was not found`)
-            })
+    async getUserByEmail(req, res, next) {
+        const { email = null } = req.params
+        const result = await userModel.findOne({ email })
+        
+        if (result) res.json(result)
+        else res.status(404).send('not found')
     }
 }

@@ -3,8 +3,13 @@ const express = require('express')
 const morgan = require('morgan')
 
 //trip-planner modules import
+<<<<<<< HEAD
 //const extremeCtrl = require('./controllers/extremeTripCtrl') ***Keep in Comment until remove google Maps import
 const sunBathCtrl = require('./controllers/sunBathTripCtrl')
+=======
+const extremeCtrl = require('./controllers/extremeTripCtrl')
+const sunBathCtrl = require('./controllers/sunBathController')
+>>>>>>> f6b0a4b26c131ea8f37b581b1e79f662d92d6ec5
 const familyTripCtrl = require('./controllers/familyTripCtrl')
 const placeCtrl = require('./controllers/placeCtrl')
 const tripCtrlr = require('./controllers/tripCtrl')
@@ -22,20 +27,20 @@ app.use(morgan('dev'))
 
 /*  Place Routes */
 app.get('/api/places', placeCtrl.getAllPlaces)
-// app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
-// app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
-// app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
+app.get('/api/:placeGoogleId', placeCtrl.getPlaceById)
+app.put('/api/newPlace/:placeGoogleId', placeCtrl.saveNewPlace)
+app.put('/api/update/:placeGoogleId', placeCtrl.updateAmount)
 
-/*User Routes HEN*/
-
-//app.get('/api/addUser',userCtrl.addUser)
+/*User Routes */
+app.put('/api/addUser',userCtrl.addUser)
+app.get('/api/getuser/:email',userCtrl.getUserByEmail)
 
 /*Family Trip Routes */
-//app.get('/api/family/kidsAttraction',familyTripCntrl.getKidsAttraction);
-// app.get('/api/family/museum',()=>{});
-// app.get('/api/family/amusementPark',()=>{});
-// app.get('/api/family/shopping',()=>{});
-// app.get('/api/family/restrount',()=>{});
+// app.get('/api/family/kidsAttraction',familyTripCtrl.getKidsAttraction);
+// app.get('/api/family/museum',familyTripCtrl.getMuseum);
+// app.get('/api/family/amusementPark',familyTripCtrl.getParks);
+// app.get('/api/family/shopping',familyTripCtrl.getParks);
+// app.get('/api/family/restrount',familyTripCtrl.getRestaurant);
 
 /*SunBath Trip Routes HEN*/
 app.get('/api/sun/beach',sunBathCtrl.getBeaches);
@@ -51,27 +56,20 @@ app.get('/api/sun/res',sunBathCtrl.getRestaurant);
 // app.get('/api/extreme/ski',extremeCtrl.getSki)
 // app.get('/api/extreme/rv',extremeCtrl.getRv)
 
-/* Extreme Trip Routes CHEN*/
-// app.get('/api/extreme/amusementPark',asyncWrapper(extremeCtrl.getParks))
-// app.get('/api/extreme/seaSport',asyncWrapper(extremeCtrl.getSeaSport))
-// app.get('/api/extreme/mount',asyncWrapper(extremeCtrl.getMount))
-// app.get('/api/extreme/ski',asyncWrapper(extremeCtrl.getSki))
-// app.get('/api/extreme/rv',asyncWrapper(extremeCtrl.getRv))
+/*DATA BASE ROUTES */
+app.get('/api/trip/all', tripCtrlr.getAllTrips);
+app.get('/api/trip/getById/:id',tripCtrlr.findTripByID)
+//app.put('/api/trip/editById/:id',tripCtrlr.editTripByID);
+app.post('/api/trip/newTrip',tripCtrlr.createNewTrip);
+app.delete('/api/trip/deleteById/:id',tripCtrlr.deleteTrip);
 
-/*DATA BASE ROUTES $$change ()=>{}$$*/
-// app.get('/api/db/trips', tripCtrlr.getAllTrips);
-// app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
-// app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
-// app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
-// app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
-
-// app.all('*', (req, res, next) => {
-//     res.send({
-//         'appName': "trip-planner",
-//         'status': "running",
-//         'stage': "dev",
-//         'docUrl': "https://github.com/chenyafe052/trip-planner"
-//     })
-// })
+app.all('*', (req, res, next) => {
+    res.send({
+        'appName': "trip-planner",
+        'status': "running",
+        'stage': "prod",
+        'docUrl': "https://github.com/chenyafe052/trip-planner"
+    })
+})
 
 app.listen(port, () => console.log(`Express server listening on port ${port}`))

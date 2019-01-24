@@ -10,7 +10,7 @@ module.exports = {
 
     async getPlaceById(req, res, next) {
         const { placeGoogleId = null } = req.params
-        const result = await placeModel.find({ placeGoogleId })
+        const result = await placeModel.findOne({ placeGoogleId })
 
         if (result) res.json(result)
         else res.status(404).send('not found')

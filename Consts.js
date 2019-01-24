@@ -5,5 +5,4 @@ module.exports = {
     GOOGLE_PLACES_API_KEY : '&key=AIzaSyDx7HFaSFpuvT2BOeiMh4qqL-U2RaxY5fo',
     GOOGLE_PLACES_URL_FORMAT : 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=',
     RADIUS : '&radius='
-
 }
