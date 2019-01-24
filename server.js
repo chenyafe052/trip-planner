@@ -54,7 +54,7 @@ app.get('/api/testres',sunBathCtrl.getRestaurant);
 /*DATA BASE ROUTES */
 app.get('/api/trip/all', tripCtrlr.getAllTrips);
 app.get('/api/trip/getById/:id',tripCtrlr.findTripByID)
-app.put('/api/trip/editById/:id',tripCtrlr.editTripByID);
+//app.put('/api/trip/editById/:id',tripCtrlr.editTripByID);
 app.post('/api/trip/newTrip',tripCtrlr.createNewTrip);
 app.delete('/api/trip/deleteById/:id',tripCtrlr.deleteTrip);
 

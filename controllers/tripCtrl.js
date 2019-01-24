@@ -9,7 +9,7 @@ module.exports = {
         if (result) {
             res.json(result);
         }
-        else{
+        else {
             res.status(404).send('not found')
         }
     },
@@ -18,14 +18,14 @@ module.exports = {
     async createNewTrip(req, res, next) {
         const trip = new tripModel(req.body);
         const result = await trip.save();
-        if(result){
-            res.status(200).send({"added":1})
+        if (result) {
+            res.status(200).send({ "added": 1 })
         }
-        else{
-            res.status(404).send({"error":"wrong params input"})
+        else {
+            res.status(404).send({ "error": "wrong params input" })
         }
     },
-    //done -V- get all trips
+
     //EDIT trip req.params:tripId body.params:placesArray
     async editTripByID(req, res, next) {
         const { _id = null } = req.params;
@@ -44,11 +44,11 @@ module.exports = {
     async findTripByID(req, res, next) {
         const { id = null } = req.params
 
-        const result = await findById(id);
-        if(result){
+        const result = await tripModel.findById(id);
+        if (result) {
             res.status(200).send(result)
-        }else{
-            res.status(404).send({"error":"wrong params or not found"})
+        } else {
+            res.status(404).send({ "error": "wrong params or not found" })
         }
     },
     //done -V- get all trips
@@ -56,10 +56,10 @@ module.exports = {
     async deleteTrip(req, res, next) {
         const { _id = null } = req.params
         const result = await tripModel.deleteOne(_id);
-        if(result){
-            res.status(200).send({"deleted":1})
-        }else{
-            res.status(404).send({"error":"wrong params or not found"})
+        if (result) {
+            res.status(200).send({ "deleted": 1 })
+        } else {
+            res.status(404).send({ "error": "wrong params or not found" })
         }
     }
     // setNewTrip(req, res, next) {
