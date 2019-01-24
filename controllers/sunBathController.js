@@ -12,8 +12,6 @@ async function returnCancellationHistory(tripId, placeId) {
                 //console.log(result.cancellationHistory);
 
                 for (key = 0; key < result.cancellationHistory.length; key++) {
-                    //console.log("im in the cancellationHistory  >>>>>",result.cancellationHistory[key]);
-                    //console.log("new place Id", placeId)
                     if (result.cancellationHistory[key] === placeId) return 2; // exist
                 }
                 return 1; // not exist
