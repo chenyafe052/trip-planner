@@ -31,11 +31,11 @@ app.put('/api/addUser',userCtrl.addUser)
 app.get('/api/getuser/:email',userCtrl.getUserByEmail)
 
 /*Family Trip Routes */
-//app.get('/api/family/kidsAttraction',familyTripCntrl.getKidsAttraction);
-// app.get('/api/family/museum',()=>{});
-// app.get('/api/family/amusementPark',()=>{});
-// app.get('/api/family/shopping',()=>{});
-// app.get('/api/family/restrount',()=>{});
+// app.get('/api/family/kidsAttraction',familyTripCtrl.getKidsAttraction);
+// app.get('/api/family/museum',familyTripCtrl.getMuseum);
+// app.get('/api/family/amusementPark',familyTripCtrl.getParks);
+// app.get('/api/family/shopping',familyTripCtrl.getParks);
+// app.get('/api/family/restrount',familyTripCtrl.getRestaurant);
 
 /*SunBath Trip Routes */
 app.get('/api/test',sunBathCtrl.getBeaches);
@@ -52,19 +52,19 @@ app.get('/api/testres',sunBathCtrl.getRestaurant);
 // app.get('/api/extreme/rv',extremeCtrl.getRv)
 
 /*DATA BASE ROUTES */
-// app.get('/api/db/trips', tripCtrlr.getAllTrips);
-// app.get('/api/db/tripbyid:id',tripCtrlr.findTripByID)
-// app.put('/api/db/editTrip:id',tripCtrlr.editTripByID);
-// app.post('/api/db/newTrip',tripCtrlr.createNewTrip);
-// app.delete('/api/db/deleteTrip:id',tripCtrlr.deleteTrip);
+app.get('/api/trip/all', tripCtrlr.getAllTrips);
+app.get('/api/trip/getById/:id',tripCtrlr.findTripByID)
+app.put('/api/trip/editById/:id',tripCtrlr.editTripByID);
+app.post('/api/trip/newTrip',tripCtrlr.createNewTrip);
+app.delete('/api/trip/deleteById/:id',tripCtrlr.deleteTrip);
 
-// app.all('*', (req, res, next) => {
-//     res.send({
-//         'appName': "trip-planner",
-//         'status': "running",
-//         'stage': "dev",
-//         'docUrl': "https://github.com/chenyafe052/trip-planner"
-//     })
-// })
+app.all('*', (req, res, next) => {
+    res.send({
+        'appName': "trip-planner",
+        'status': "running",
+        'stage': "prod",
+        'docUrl': "https://github.com/chenyafe052/trip-planner"
+    })
+})
 
 app.listen(port, () => console.log(`Express server listening on port ${port}`))
